@@ -1,0 +1,39 @@
+#!/bin/sh
+
+clear
+
+config="$HOME/.config/ServedSpicy"
+
+base="$(dirname -- $(readlink -fn -- "$0"; echo x))/"
+
+
+echo ""
+echo "File Location: $base"
+echo ""
+
+
+source="${base}/../Source"
+imports="${source}/Imports.json"
+app="${source}/Server.js"
+
+interface="${base}/../../Interface/Source"
+
+echo ""
+echo "Interface Location: $interface"
+echo ""
+
+readable="${config},${interface}"
+writable="${config}"
+
+
+deno run                    \
+    --allow-net             \
+    --allow-env             \
+    --allow-ffi             \
+    --allow-read=$readable  \
+    --allow-write=$writable \
+    --importmap=$imports    \
+    --unstable              \
+    $app                    \
+    --webserverPort=7805    \
+    --socketPort=7806
