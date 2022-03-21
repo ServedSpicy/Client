@@ -1,0 +1,16 @@
+{
+  "imports": {
+
+    "Middleware" : "./Modules/Middleware.js" ,
+    "Routes"     : "./Modules/Routes.js",
+
+    "Parameters" : "./Data/Parameters.js" ,
+    "Resources"  : "./Data/Resources.js" ,
+
+    "Oak" : "https://deno.land/x/oak/mod.ts" ,
+
+    "Flags" : "https://deno.land/std/flags/mod.ts",
+    "Path"  : "https://deno.land/std/path/mod.ts",
+    "YAML"  : "https://deno.land/std/encoding/yaml.ts"
+  }
+}
