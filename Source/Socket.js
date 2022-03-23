@@ -1,5 +1,6 @@
 
 import * as YAML from 'YAML';
+import { socketPort } from 'Parameters';
 
 import upload from './Upload.js';
 
@@ -11,7 +12,7 @@ export async function init(){
 
     const { listen } = Deno;
 
-    for await(const connection of listen({ port : 7806 })){
+    for await(const connection of listen({ port : socketPort })){
 
         const http = Deno.serveHttp(connection);
         const exchange = await http.nextRequest();

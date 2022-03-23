@@ -34,7 +34,7 @@ const definitions = {
 };
 
 
-let { libraryType , device } = systemInfo();
+let { libraryType } = systemInfo();
 
 import { join , dirname , fromFileUrl } from 'Path';
 
@@ -67,9 +67,11 @@ export async function synchronize(bytes){
         ...bytes
     ];
 
+    let { device } = systemInfo();
+
     log('Device :',device);
 
-    device = toBytes(device);
+    device = toBytes(device); // non-repeatable
 
     device = new Uint8Array(device);
     bytes = new Uint8Array(bytes);

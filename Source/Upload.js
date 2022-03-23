@@ -22,47 +22,15 @@ async function readRecipes(){
 }
 
 
-function resolveRecipes(recipes,spices){
+import Encode from './Recipe/Encode.js';
+import Resolve from './Recipe/Resolve.js';
 
-    const names = new Map;
-
-    spices
-    .map((spice,index) => [ spice , index ])
-    .filter(([ spice ]) => spice)
-    .forEach((args) => names.set(...args));
-
-    console.log(names);
-
-    for(const recipe in recipes){
-        recipes[recipe] = recipes[recipe]
-        .map(([ spice , amount ]) => {
-
-            const position = names.get(spice);
-
-            if(Number.isInteger(position))
-                return [ position , amount ];
-
-            throw `Invalid spice position : ${ position } | ${ spice }`;
-        });
-    }
-}
-
-
-function encodeString(string){
-
-    const chars = [...string]
-        .map((c) => c.charCodeAt(0))
-        .map((code) => code > 255 ? 63 : code);
-
-    return [ string.length , chars ];
-}
 
 function encodeRecipes(recipes){
     return Object
         .entries(recipes)
-        .map(([ name , ingredients ]) => {
-            return [ encodeString(name) , [ ingredients.length , ...ingredients ] ]
-        });
+        .map(([ name , ingredients ]) => { name , ingredients })
+        .map(Encode.recipe);
 }
 
 
@@ -76,19 +44,48 @@ export default async function upload(){
 
     //  Dummy Recipe List
 
-    let recipes = {
-        'Chicken Mix' : [
-            [ 'Oregano' , 4 ] ,
-            [ 'Testing1' , 8 ] ,
-            [ 'nice' , 6]
-        ]
-    };
+    let recipes = [{
+        name : 'Chicken Mix' ,
+        ingredients : [{
+            name : 'Oregano' ,
+            amount : 4
+        },{
+            name : 'test' ,
+            amount : 8
+        },{
+            name : 'nice' ,
+            amount : 6
+        }]
+    },{
+        name : 'Mistery Mix' ,
+        ingredients : [{
+            name : 'Oregano' ,
+            amount : 4
+        },{
+            name : 'test' ,
+            amount : 8
+        },{
+            name : 'nice' ,
+            amount : 6
+        }]
+    }];
 
-    resolveRecipes(recipes,spices);
+
+
+
+    const names = new Map;
+
+    spices
+    .map((spice,index) => [ spice , index ])
+    .filter(([ spice ]) => spice)
+    .forEach((args) => names.set(...args));
+
+    recipes = Resolve.recipes(recipes,names);
 
     console.log(recipes);
 
-    recipes = encodeRecipes(recipes);
+    // recipes = encodeRecipes(recipes);
+    recipes = recipes.map(Encode.recipe);
 
     console.log(recipes);
 
@@ -105,17 +102,9 @@ export default async function upload(){
     }
 
 
-    // log(`Setting Up Test`);
-
-
-
-
     const bytes = data;
 
     log('Bytes :',bytes);
-
-
-    console.log(bytes);
 
     const exitCode = await synchronize(bytes);
 

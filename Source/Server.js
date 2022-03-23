@@ -1,6 +1,6 @@
 
 import { ErrorHandler , Logger , Router } from 'Middleware';
-import { webserverPort , socketPort } from 'Parameters';
+import { webserverPort } from 'Parameters';
 import { Application } from 'Oak';
 
 const { log } = console;
