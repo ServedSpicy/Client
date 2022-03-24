@@ -12,5 +12,6 @@ export default [
     [ '/css/:css'           , Style      ] ,
     [ '/img/:img'           , Images     ] ,
     [ '/js/:js'             , Javascript ] ,
+    [ '/js/Data/:js'        , Javascript ] ,
     [ '/'                   , Index      ]
 ];

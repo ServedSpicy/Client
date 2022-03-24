@@ -8,7 +8,7 @@ async function handle(context){
     const { request , response } = context;
     const { pathname } = request.url;
 
-    if(!/^\/js\/[a-zA-Z0-9_%.-]+\.js$/i.test(pathname))
+    if(!/^\/js(\/[a-zA-Z0-9_%.-]+)+\.js$/i.test(pathname))
         return context.throw(404);
 
     response.status = Status.OK;
