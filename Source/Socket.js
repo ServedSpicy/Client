@@ -3,6 +3,7 @@ import * as YAML from 'YAML';
 import { socketPort } from 'Parameters';
 
 import upload from './Upload.js';
+import { saveRecipes , saveSpices } from './Recipe/Save.js'
 
 
 export async function init(){
@@ -76,19 +77,35 @@ export async function init(){
                         console.log(`Saving Resource :`,resource);
 
                         switch(resource){
-                        case 'Recipes':
-                        case 'Spices':
+                            case 'Recipes' : {
 
-                            const { data } = request;
+                                const { data } = request;
 
-                            console.log('Data',data);
+                                console.log('Data',data);
 
-                            let path = `${ Deno.env.get("HOME") }/.config/ServedSpicy/${ resource }.yaml`;
-                            console.log(path);
+                                const json = JSON.parse(data);
 
-                            await Deno.writeTextFile(path,YAML.stringify(JSON.parse(data)));
+                                await saveRecipes(
+                                    Object
+                                    .entries(json)
+                                    .map(([ name , recipe ]) => ({ name , used : recipe.Used , spices : new Map(Object.entries(recipe.Spices)) })))
 
-                            break;
+                                // await Deno.writeTextFile(path,YAML.stringify(JSON.parse(data)));
+
+                                break;
+                            }
+                            case 'Spices' : {
+
+                                const { data } = request;
+
+                                console.log('Data',data);
+
+                                const json = JSON.parse(data);
+
+                                await saveSpices(json);
+
+                                break;
+                            }
                         }
 
 
