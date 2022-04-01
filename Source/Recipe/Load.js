@@ -15,10 +15,49 @@ export async function loadSpices(){
     let path = `${ configs }/Spices.yaml`;
     path = await realPath(path);
 
-    const raw = await readTextFile(path);
-    const data = parse(raw);
+    let raw;
 
-    return data;
+    try {
+        raw = await readTextFile(path);
+    } catch (error) {
+
+        warn(error);
+
+        return {
+            error : {
+                type : 'FailedToReadFile' ,
+                message : error
+            }
+        };
+    }
+
+    let data;
+
+    try {
+        data = parse(raw);
+    } catch (error) {
+
+        warn(error);
+
+        return {
+            data ,
+            error : {
+                type : 'CouldntParseYAML' ,
+                message : error
+            }
+        };
+    }
+
+    console.log('yaml data',data);
+
+    if(data)
+        return parseSpices(data);
+
+    return {
+        error : {
+            type : 'NoDataAvailable'
+        }
+    }
 }
 
 
@@ -181,6 +220,9 @@ function parseRecipes(data){
                     }
                 }
 
+                if(spices.length < 1)
+                    used = false;
+
                 recipes.push({ name , used , spices });
 
                 continue;
@@ -211,4 +253,54 @@ function parseRecipes(data){
     return {
         recipes
     };
+}
+
+
+function parseSpices(data){
+
+    if(Array.isArray(data)){
+
+        if(data.length > 1){
+
+            const spices = [];
+
+            for(const spice of data){
+
+                if(spice === null){
+                    spices.push(spice);
+                    continue;
+                }
+
+                if(typeof spice === 'string'){
+                    spices.push(spice);
+                    continue;
+                }
+
+                return {
+                    data ,
+                    error : {
+                        type : 'InvalidSpiceValue',
+                        message : spice
+                    }
+                };
+            }
+
+            return { spices };
+        } else {
+            return {
+                data ,
+                error : {
+                    type : 'MissingSpiceData'
+                }
+            };
+        }
+    } else {
+        return {
+            data ,
+            error : {
+                type : 'WrongStructure' ,
+                message : 'NonArray'
+            }
+        }
+    }
 }

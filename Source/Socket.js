@@ -98,10 +98,12 @@ export async function init(){
 
                             const json = JSON.parse(data);
 
-                            await saveRecipes(
-                                Object
-                                .entries(json)
-                                .map(([ name , recipe ]) => ({ name , used : recipe.Used , spices : new Map(Object.entries(recipe.Spices)) })))
+                            await saveRecipes(json);
+
+                            // await saveRecipes(
+                            //     Object
+                            //     .entries(json)
+                            //     .map(([ name , recipe ]) => ({ name , used : recipe.Used , spices : new Map(Object.entries(recipe.Spices)) })))
 
                             // await Deno.writeTextFile(path,YAML.stringify(JSON.parse(data)));
 

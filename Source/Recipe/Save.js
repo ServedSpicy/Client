@@ -15,8 +15,8 @@ function formatRecipe(recipe){
     lines.push(`  Used: ${ recipe.used }`);
     lines.push(`  Spices:`);
 
-    if(recipe.spices.size > 0)
-        recipe.spices.forEach((amount,spice) => {
+    if(recipe.spices.length > 0)
+        recipe.spices.forEach(([ spice , amount ]) => {
             lines.push(`    ${ spice } : ${ amount }`);
         });
 
