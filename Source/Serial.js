@@ -37,10 +37,18 @@ const definitions = {
 let { libraryType } = systemInfo();
 
 import { join , dirname , fromFileUrl } from 'Path';
+import { release } from './Data/Parameters.js';
 
 const cwd = dirname(fromFileUrl(import.meta.url));
 
-const libraryPath = `${ cwd }/../../Serial/Build/Serial.${ libraryType }`;
+let pathToSerial = '../../Serial/Build';
+
+if(release)
+    pathToSerial = '..';
+
+const libraryPath = `${ cwd }/${ pathToSerial }/Serial.${ libraryType }`;
+
+log(`Serial Library: ${ libraryPath }`);
 
 const library = Deno.dlopen(libraryPath,definitions);
 

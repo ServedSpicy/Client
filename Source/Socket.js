@@ -15,7 +15,7 @@ async function send(message){
 
 export async function init(){
 
-    console.log('initing')
+    console.log(`Starting websocket with port: ${ socketPort }`);
 
 
     const { listen } = Deno;

@@ -17,20 +17,21 @@ app.use(Router);
 
 import { init } from './Socket.js';
 
-const socketProcess = new Promise((resolve,reject) => {
+const socketProcess = new Promise(async (resolve,reject) => {
 
     log('Starting Socket Server');
 
     try { init().then(resolve); }
     catch (error) {
         console.log(error);
+        reject();
     }
 });
 
 
 log(`\nStarting with port: ${ webserverPort }\n`);
 
-const webserverProcess = new Promise((resolve,reject) => {
+const webserverProcess = new Promise(async (resolve,reject) => {
 
     log('Starting Webserver');
 
@@ -40,8 +41,34 @@ const webserverProcess = new Promise((resolve,reject) => {
         .then(resolve);
     } catch (error) {
         console.log(error);
+        reject();
     }
 });
 
 
-await Promise.all([ socketProcess , webserverProcess ]);
+const process_browser = new Promise(async (resolve,reject) => {
+
+    log('Starting Browser');
+
+    try {
+
+        const browser = new Worker(new URL('./Browser.js',import.meta.url).href,{
+            type : 'module' ,
+            deno : { namespace : true }
+        });
+
+        browser.addEventListener('exit',resolve);
+
+        setTimeout(() => {
+            browser.postMessage({ port : webserverPort });
+        },200);
+
+    } catch (error) {
+        console.log(error);
+        reject();
+    }
+
+});
+
+
+await Promise.any([ socketProcess , webserverProcess , process_browser ]);

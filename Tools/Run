@@ -3,6 +3,7 @@
 clear
 
 config="$HOME/.config/ServedSpicy"
+plugins="$HOME/.cache/deno/plug"
 
 base="$(dirname -- $(readlink -fn -- "$0"; echo x))/"
 
@@ -22,7 +23,7 @@ echo ""
 echo "Interface Location: $interface"
 echo ""
 
-readable="${config},${interface}"
+readable="${config},${interface},${plugins},${source}"
 writable="${config}"
 
 

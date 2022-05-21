@@ -8,7 +8,10 @@ const root = join(dirname(fromFileUrl(url)),'..','..');
 
 log('The root directory of this webserver is:',root);
 
-const resources = join(root,'..','Interface','Source');
+import { release } from './Parameters.js'
+
+const resources = join(root,release ? '' : '..','Interface',release ? '' : 'Source');
+
 
 
 export const index = join(resources,'App.html');
