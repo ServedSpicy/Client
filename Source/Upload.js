@@ -40,35 +40,53 @@ export default async function upload(){
 
     const spices = await readSpices();
 
-    console.log('Spices',spices);
+    log('Spices',spices);
+
+    let recipes = await readRecipes();
+
+    log('Recipes',recipes);
+
+    recipes = Object
+        .entries(recipes)
+        .filter(([ _ , data]) => data.Used)
+        .map(([ name , data ]) => {
+
+            const ingredients = Object
+                .entries(data.Spices)
+                .map(([ name , amount ]) => ({ name , amount }));
+
+            return { name , ingredients };
+        });
+
+    log('Recipes',recipes);
 
     //  Dummy Recipe List
 
-    let recipes = [{
-        name : 'Chicken Mix' ,
-        ingredients : [{
-            name : 'Oregano' ,
-            amount : 4
-        },{
-            name : 'test' ,
-            amount : 8
-        },{
-            name : 'nice' ,
-            amount : 6
-        }]
-    },{
-        name : 'Mistery Mix' ,
-        ingredients : [{
-            name : 'Oregano' ,
-            amount : 4
-        },{
-            name : 'test' ,
-            amount : 8
-        },{
-            name : 'nice' ,
-            amount : 6
-        }]
-    }];
+    // let recipes = [{
+    //     name : 'Chicken Mix' ,
+    //     ingredients : [{
+    //         name : 'Oregano' ,
+    //         amount : 4
+    //     },{
+    //         name : 'test' ,
+    //         amount : 8
+    //     },{
+    //         name : 'nice' ,
+    //         amount : 6
+    //     }]
+    // },{
+    //     name : 'Mistery Mix' ,
+    //     ingredients : [{
+    //         name : 'Oregano' ,
+    //         amount : 4
+    //     },{
+    //         name : 'test' ,
+    //         amount : 8
+    //     },{
+    //         name : 'nice' ,
+    //         amount : 6
+    //     }]
+    // }];
 
 
 
@@ -96,8 +114,8 @@ export default async function upload(){
     console.log('Bytes',data);
     console.log('Count',data.length);
 
-    if(data.length > 1022){
-        console.warn('Byte count exceeds 1024 : ',data.length);
+    if(data.length > 1000){
+        console.warn('Byte count exceeds 1000 : ',data.length);
         return;
     }
 

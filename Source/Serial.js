@@ -64,14 +64,20 @@ function toBytes(string){
         .map((char) => char.codePointAt(0));
 }
 
+function serializeWord(number){
+    const left = number >> 8;
+    const right = number - (left << 8);
+    return [ left , right ];
+}
 
 export async function synchronize(bytes){
 
-    const byteCount = bytes.length + 2;
+    const byteCount = bytes.length;
+
+    log('ByteCount: ',byteCount);
 
     bytes = [
-        byteCount >> 4 ,
-        byteCount & 255 ,
+        ...serializeWord(byteCount),
         ...bytes
     ];
 
@@ -84,5 +90,5 @@ export async function synchronize(bytes){
     device = new Uint8Array(device);
     bytes = new Uint8Array(bytes);
 
-    return await Serial.synchronize(device,bytes,byteCount);
+    return await Serial.synchronize(device,bytes,byteCount + 2);
 }
