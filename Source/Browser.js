@@ -11,6 +11,7 @@ self.onmessage = async ({ data : { port } }) => {
 
     const webview = new Webview();
     webview.navigate(`http://localhost:${ port }`);
+    webview.title = 'ServedSpicy';
     webview.run();
 
     log('Closing browser worker');

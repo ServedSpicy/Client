@@ -1,28 +1,8 @@
 
 
 const { log } = console;
-const { os } = Deno.build;
 
-log(`System : `,os);
-
-function systemInfo(){
-    switch(os){
-    case 'linux' : return {
-        libraryType : 'so' ,
-        device : '/dev/ttyUSB0'
-    };
-    case 'windows': return {
-        libraryType : 'dll' ,
-        device : 'COM0'
-    };
-    case 'darwin' : return {
-        libraryType : 'dylib' ,
-        device : ''
-    };
-    default:
-        throw `Unknown System : ${ os }`;
-    }
-}
+import System from './System.js'
 
 
 const definitions = {
@@ -34,7 +14,6 @@ const definitions = {
 };
 
 
-let { libraryType } = systemInfo();
 
 import { join , dirname , fromFileUrl } from 'Path';
 import { release } from './Data/Parameters.js';
@@ -46,7 +25,7 @@ let pathToSerial = '../../Serial/Build';
 if(release)
     pathToSerial = '..';
 
-const libraryPath = `${ cwd }/${ pathToSerial }/Serial.${ libraryType }`;
+const libraryPath = `${ cwd }/${ pathToSerial }/Serial.${ System.dynamicExtension }`;
 
 log(`Serial Library: ${ libraryPath }`);
 
@@ -81,11 +60,11 @@ export async function synchronize(bytes){
         ...bytes
     ];
 
-    let { device } = systemInfo();
+    const { usbPath } = System;
 
-    log('Device :',device);
+    log('Device :',usbPath);
 
-    device = toBytes(device); // non-repeatable
+    let device = toBytes(usbPath);
 
     device = new Uint8Array(device);
     bytes = new Uint8Array(bytes);
