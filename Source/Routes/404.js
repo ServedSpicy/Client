@@ -2,9 +2,8 @@
 import { Status } from 'Oak';
 
 
-export default async (context) => {
+const { NOTFOUND } = Status;
 
-    const { response } = context;
 
-    response.status = Status.NOTFOUND;
-}
+export default async ({ response }) =>
+    response.status = NOTFOUND;

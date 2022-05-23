@@ -4,6 +4,9 @@ import { join } from 'Path';
 import { Status } from 'Oak';
 
 
+const page = { root : index };
+
+
 export default async (context) => {
 
     const { response } = context;
@@ -11,7 +14,5 @@ export default async (context) => {
     response.status = Status.OK;
     response.type = 'text/html';
 
-    console.log(index);
-
-    await context.send({ root : index });
+    await context.send(page);
 }

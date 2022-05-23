@@ -1,9 +1,10 @@
 
 
-const { log } = console;
-
+import { join , dirname , fromFileUrl } from 'Path';
+import { release } from './Data/Parameters.js';
 import System from './System.js'
 
+const { log } = console;
 
 const definitions = {
     synchronize : {
@@ -14,9 +15,6 @@ const definitions = {
 };
 
 
-
-import { join , dirname , fromFileUrl } from 'Path';
-import { release } from './Data/Parameters.js';
 
 const cwd = dirname(fromFileUrl(import.meta.url));
 
