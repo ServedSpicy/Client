@@ -34,7 +34,7 @@ function encodeRecipes(recipes){
 }
 
 
-import { synchronize } from './Serial.js';
+import synchronize from './Serial/Synchronize.js';
 
 export default async function upload(){
 
