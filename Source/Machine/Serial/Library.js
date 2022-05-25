@@ -1,8 +1,8 @@
 
 
 import { join , dirname , fromFileUrl } from 'Path';
-import { release } from '../../Data/Parameters.js';
 import { toBytes } from './Serialize.js';
+import { isRelease } from 'App';
 import System from 'System';
 
 
@@ -23,7 +23,7 @@ const definitions = {
 const cwd = dirname(fromFileUrl(import.meta.url));
 
 
-const pathToSerial = (release)
+const pathToSerial = (isRelease)
     ? '../../..'
     : '../../../../Serial/Build' ;
 

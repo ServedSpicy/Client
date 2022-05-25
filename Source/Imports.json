@@ -2,13 +2,11 @@
   "imports": {
 
     "Middleware" : "./WebServer/Middleware/mod.js" ,
+    "Resources"  : "./WebServer/Resources.js" ,
     "Routes"     : "./WebServer/Routes/mod.js",
 
     "System"     : "./Misc/System.js",
-
-    "Parameters" : "./Data/Parameters.js" ,
-    "Resources"  : "./Data/Resources.js" ,
-
+    "App"        : "./Misc/App.js",
 
     "WebView" : "https://raw.githubusercontent.com/webview/webview_deno/main/src/webview.ts" ,
     "Flags"  : "https://deno.land/std/flags/mod.ts" ,
