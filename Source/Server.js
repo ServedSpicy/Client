@@ -15,7 +15,7 @@ app.use(Router);
 
 
 
-import { init } from './Socket.js';
+import { init } from './WebSocket/Socket.js';
 
 const socketProcess = new Promise(async (resolve,reject) => {
 
@@ -52,7 +52,7 @@ const process_browser = new Promise(async (resolve,reject) => {
 
     try {
 
-        const browser = new Worker(new URL('./Browser.js',import.meta.url).href,{
+        const browser = new Worker(new URL('./WebView/Browser.js',import.meta.url).href,{
             type : 'module' ,
             deno : { namespace : true }
         });
