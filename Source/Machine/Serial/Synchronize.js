@@ -1,7 +1,7 @@
 
 import { serializeWord } from './Serialize.js';
 import { synchronize } from './Library.js';
-import System from '../System.js';
+import System from 'System';
 
 
 const { log } = console;

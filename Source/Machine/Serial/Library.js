@@ -1,9 +1,9 @@
 
 
 import { join , dirname , fromFileUrl } from 'Path';
-import { release } from '../Data/Parameters.js';
+import { release } from '../../Data/Parameters.js';
 import { toBytes } from './Serialize.js';
-import System from '../System.js';
+import System from 'System';
 
 
 const { dynamicExtension : dynamic } = System;
@@ -24,8 +24,8 @@ const cwd = dirname(fromFileUrl(import.meta.url));
 
 
 const pathToSerial = (release)
-    ? '../..'
-    : '../../../Serial/Build' ;
+    ? '../../..'
+    : '../../../../Serial/Build' ;
 
 
 const libraryPath = join(cwd,pathToSerial,`Serial.${ dynamic }`);

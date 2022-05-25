@@ -1,16 +1,19 @@
 {
   "imports": {
 
-    "Middleware" : "./Modules/Middleware.js" ,
-    "Routes"     : "./Modules/Routes.js",
+    "Middleware" : "./WebServer/Middleware/mod.js" ,
+    "Routes"     : "./WebServer/Routes/mod.js",
+
+    "System"     : "./Misc/System.js",
 
     "Parameters" : "./Data/Parameters.js" ,
     "Resources"  : "./Data/Resources.js" ,
 
-    "Oak" : "https://deno.land/x/oak/mod.ts" ,
 
-    "Flags" : "https://deno.land/std/flags/mod.ts",
-    "Path"  : "https://deno.land/std/path/mod.ts",
-    "YAML"  : "https://deno.land/std/encoding/yaml.ts"
+    "WebView" : "https://raw.githubusercontent.com/webview/webview_deno/main/src/webview.ts" ,
+    "Flags"  : "https://deno.land/std/flags/mod.ts" ,
+    "Path"   : "https://deno.land/std/path/mod.ts" ,
+    "YAML"   : "https://deno.land/std/encoding/yaml.ts" ,
+    "Oak" : "https://deno.land/x/oak/mod.ts"
   }
 }

@@ -1,9 +1,9 @@
 
-import Javascript from '../Routes/Javascript.js';
-import NotFound   from '../Routes/404.js';
-import Images     from '../Routes/Images.js';
-import Index      from '../Routes/Index.js';
-import Style      from '../Routes/Style.js';
+import Javascript from './Javascript.js';
+import NotFound   from './404.js';
+import Images     from './Images.js';
+import Index      from './Index.js';
+import Style      from './Style.js';
 
 export default [
     [ '/css/Themes/:theme'  , Style      ] ,

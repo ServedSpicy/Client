@@ -22,8 +22,8 @@ async function readRecipes(){
 }
 
 
-import Encode from './Recipe/Encode.js';
-import Resolve from './Recipe/Resolve.js';
+import Encode from '../Recipe/Encode.js';
+import Resolve from '../Recipe/Resolve.js';
 
 
 function encodeRecipes(recipes){

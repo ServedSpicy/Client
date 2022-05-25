@@ -1,5 +1,5 @@
 
-import { Webview } from 'https://raw.githubusercontent.com/webview/webview_deno/main/src/webview.ts';
+import { Webview } from 'WebView';
 
 const { log } = console;
 
