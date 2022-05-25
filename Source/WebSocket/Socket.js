@@ -28,7 +28,7 @@ async function send(message){
     client.send(toJSON(message));
 }
 
-export async function init(){
+export async function listen(){
 
     print(`Opening With Port: %c${ socketPort }`,orangeA);
 
@@ -43,7 +43,9 @@ export async function init(){
         if(!exchange)
             throw `Websocket couldn't serve request`;
 
-        const { socket , response } = upgradeWebSocket(exchange.request);
+        const { request } = exchange;
+
+        const { socket , response } = upgradeWebSocket(request);
 
         client = socket;
 

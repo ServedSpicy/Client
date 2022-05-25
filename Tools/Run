@@ -15,7 +15,7 @@ echo ""
 
 source="${base}/../Source"
 imports="${source}/Imports.json"
-app="${source}/Server.js"
+app="${source}/App.js"
 
 interface="${base}/../../Interface/Source"
 
