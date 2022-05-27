@@ -5,6 +5,10 @@ import { cyanA , blueA , reset , orangeA } from 'Color'
 const { log } = console;
 
 
+export function general(text,...style){
+    log(`  %c🭬 %c${ text }`,'color:gray',reset, ...style );
+}
+
 export function webserver(text,...style){
     log(` 📦  ${ text }`, ...style );
 }
@@ -51,7 +55,7 @@ export function prettifyPath(path,options){
 
         other = other.map((line) => padding + line);
 
-        return [ first , ...other ].join('\n');
+        return [ first , ...other ].join('\n') + '\n';
     }
 
     return lines;

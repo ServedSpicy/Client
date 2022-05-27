@@ -1,5 +1,7 @@
 
 import { join , dirname , fromFileUrl } from 'Path';
+import { general as print , prettifyPath , orangeA } from 'Log';
+
 
 const { url } = import.meta;
 const { log } = console;
@@ -12,8 +14,12 @@ const { log } = console;
 export const folder = join(dirname(fromFileUrl(url)),'..','..');
 
 
-log('The root directory of this webserver is:',folder);
+const folder_pretty = prettifyPath(folder,{
+    lineLimit : 30 ,
+    padLine : 19
+});
 
+print(`Client Folder: %c${ folder_pretty }`,orangeA);
 
 
 import { parse } from 'Flags';
