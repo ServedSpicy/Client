@@ -6,12 +6,14 @@
     "Routes"     : "./WebServer/Routes/mod.js",
 
     "System"     : "./Misc/System.js",
+    "Color"      : "./Misc/Color.js",
+    "Log"        : "./Misc/Log.js",
     "App"        : "./Misc/App.js",
 
-    "WebView" : "https://raw.githubusercontent.com/webview/webview_deno/main/src/webview.ts" ,
-    "Flags"  : "https://deno.land/std/flags/mod.ts" ,
-    "Path"   : "https://deno.land/std/path/mod.ts" ,
-    "YAML"   : "https://deno.land/std/encoding/yaml.ts" ,
-    "Oak" : "https://deno.land/x/oak/mod.ts"
+    "WebView"    : "https://raw.githubusercontent.com/webview/webview_deno/main/src/webview.ts" ,
+    "YAML"       : "https://deno.land/std/encoding/yaml.ts" ,
+    "Flags"      : "https://deno.land/std/flags/mod.ts" ,
+    "Path"       : "https://deno.land/std/path/mod.ts" ,
+    "Oak"        : "https://deno.land/x/oak/mod.ts"
   }
 }

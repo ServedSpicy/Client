@@ -1,16 +1,13 @@
 
 import { ErrorHandler , Logger , Router } from 'Middleware';
 import { webserverPort as port } from 'App';
+import { webserver as print , orangeA } from 'Log';
 import { Application } from 'Oak';
-
-
-const { log } = console;
 
 
 export async function listen(){
 
-
-    log(`\nStarting with port: ${ port }\n`);
+    print(`Listening On Port: %c${ port }`,orangeA);
 
 
     const app = new Application;

@@ -1,22 +1,25 @@
 
-// import { webserverPort } from 'App';
-
+import { webview as print , orangeA } from 'Log';
 import { Webview } from 'WebView';
 
-const { log } = console;
 
-log('Browser waiting for port');
+
+
+print('Worker Running');
+
 
 self.onmessage = async ({ data : { port } }) => {
 
-    log(`Opening browser with port: ${ port }`);
+    const address = `http://localhost:${ port }`;
+
+    print(`Connecting To %c${ address }`,orangeA);
 
     const webview = new Webview();
-    webview.navigate(`http://localhost:${ port }`);
+    webview.navigate(address);
     webview.title = 'ServedSpicy';
     webview.run();
 
-    log('Closing browser worker');
+    print('Stopping Worker Thread');
 
     self.close();
 }

@@ -3,6 +3,7 @@ import * as YAML from 'YAML';
 
 import { saveRecipes , saveSpices } from '../Recipe/Save.js'
 import { loadRecipes , loadSpices } from '../Recipe/Load.js'
+import { websocket as print , orangeA } from 'Log';
 import { socketPort } from 'App';
 import upload from '../Machine/Upload.js';
 
@@ -13,13 +14,6 @@ const {
 } = JSON;
 
 const { log } = console;
-
-
-import { blueA , reset , orangeA } from '../Misc/Colors.js'
-
-function print(text,...style){
-    log(` %c⇄%c  ${ text }`, blueA , reset , ...style );
-}
 
 
 let client;

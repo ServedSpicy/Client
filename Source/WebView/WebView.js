@@ -1,5 +1,6 @@
 
 import { webserverPort as port } from 'App';
+import { webview as print } from 'Log';
 
 
 const path = new URL('./Browser.js',import.meta.url).href;
@@ -18,7 +19,7 @@ let browser;
 
 export function start(){
 
-    log('Starting Browser Worker');
+    print('Starting Worker');
 
     return new Promise((resolve) => {
 

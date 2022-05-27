@@ -1,6 +1,7 @@
 
 
 import { join , dirname , fromFileUrl } from 'Path';
+import { serial as print , prettifyPath , orangeA } from 'Log';
 import { toBytes } from './Serialize.js';
 import { isRelease } from 'App';
 import System from 'System';
@@ -30,7 +31,12 @@ const pathToSerial = (isRelease)
 
 const libraryPath = join(cwd,pathToSerial,`Serial.${ dynamic }`);
 
-log(`Serial Library: ${ libraryPath }`);
+const libraryPath_pretty = prettifyPath(libraryPath,{
+    lineLimit : 30 ,
+    padLine : 22
+});
+
+print(`Library Location: %c${ libraryPath_pretty }`,orangeA);
 
 
 const Serial = dlopen(libraryPath,definitions).symbols;
@@ -38,7 +44,7 @@ const Serial = dlopen(libraryPath,definitions).symbols;
 
 const { usbPath } = System;
 
-log('Device :',usbPath);
+print(`Device Path: %c${ usbPath }`,orangeA);
 
 const device = toBytes(usbPath);
 

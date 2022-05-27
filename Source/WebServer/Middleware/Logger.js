@@ -1,5 +1,5 @@
 
-const { log } = console;
+import { webserver as print , orangeA , reset } from 'Log'
 
 
 const millis = () =>
@@ -16,11 +16,8 @@ async function logger(context,next){
 
     const { method , url } = context.request;
 
-    log(`${
-        method.padEnd(6,' ')
-    } : ${
-        delta.padStart(4,' ')
-    }ms : ${ url.pathname }`);
+    print(`%c${ method } %c: %c${ delta.padStart(2,' ') }ms %c: %c${ url.pathname }`,
+        orangeA,reset,orangeA,reset,orangeA);
 }
 
 
