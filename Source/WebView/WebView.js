@@ -26,16 +26,18 @@ export function start(){
         browser = new Worker(path,settings);
 
         browser.addEventListener('exit',resolve);
-
-        sendPort();
+        browser.addEventListener('message',onMessage);
     });
 }
 
 
+function onMessage(message){
+    switch(message.data){
+    case 'ready':
+        sendPort();
+    }
+}
+
 function sendPort(){
-    setTimeout(() => {
-
-        browser.postMessage({ port });
-
-    },200);
+    browser.postMessage({ port });
 }

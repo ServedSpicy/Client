@@ -8,6 +8,9 @@ import { Webview } from 'WebView';
 print('Worker Running');
 
 
+self.postMessage('ready');
+
+
 self.onmessage = async ({ data : { port } }) => {
 
     const address = `http://localhost:${ port }`;
