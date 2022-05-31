@@ -62,7 +62,8 @@ export async function listen(){
 const actions = {
     'upload' : upload ,
     'write' : write ,
-    'read' : read
+    'read' : read ,
+    'openGitHub' : openGitHub
 };
 
 
@@ -136,4 +137,14 @@ async function write({ resource , data }){
     }
 
     print(`Unknown Resource: %c${ resource }`,orangeA);
+}
+
+
+import { open } from 'Open';
+
+async function openGitHub(){
+
+    print('Opening GitHub Page');
+
+    await open('https://GitHub.com/ServedSpicy');
 }

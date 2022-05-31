@@ -11,8 +11,9 @@
     "App"        : "./Misc/App.js",
 
     "WebView"    : "https://raw.githubusercontent.com/webview/webview_deno/main/src/webview.ts" ,
-    "YAML"       : "https://deno.land/std/encoding/yaml.ts" ,
     "Flags"      : "https://deno.land/std/flags/mod.ts" ,
+    "Open"       : "https://github.com/hashrock/deno-opn/raw/v2.0.0/mod.ts" ,
+    "YAML"       : "https://deno.land/std/encoding/yaml.ts" ,
     "Path"       : "https://deno.land/std/path/mod.ts" ,
     "Oak"        : "https://deno.land/x/oak/mod.ts"
   }
