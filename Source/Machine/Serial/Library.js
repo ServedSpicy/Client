@@ -33,7 +33,7 @@ const libraryPath = join(cwd,pathToSerial,`Serial.${ dynamic }`);
 
 const libraryPath_pretty = prettifyPath(libraryPath,{
     lineLimit : 30 ,
-    padLine : 22
+    padLine : 23
 });
 
 print(`Library Location: %c${ libraryPath_pretty }`,orangeA);

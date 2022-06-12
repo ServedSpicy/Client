@@ -1,10 +1,13 @@
 
-import { index } from 'Resources';
+import { resources } from 'Resources';
 import { join } from 'Path';
 import { Status } from 'Oak';
 
 
-const page = { root : index };
+const page = {
+    root : resources ,
+    path : 'App.html'
+};
 
 
 export default async (context) => {

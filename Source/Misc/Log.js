@@ -29,17 +29,21 @@ export * from 'Color';
 
 export function prettifyPath(path,options){
 
+    const parts = path
+        .split('/')
+        .filter((part) => part);
+
     const { lineLimit } = options;
 
     let lines = [];
     let line = [];
 
-    for(const part of path.split('/').filter((part) => part))
-        if((line + part).length <= lineLimit)
-            line.push(part);
-        else {
+    for(const part of parts)
+        if((line + ' / ' + part).length > lineLimit){
             lines.push(line.join(' / '));
-            line = [];
+            line = [ part ];
+        } else {
+            line.push(part);
         }
 
     if(line.length)
