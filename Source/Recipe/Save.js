@@ -27,7 +27,7 @@ function formatRecipe(recipe){
 
 export async function saveRecipes(recipes){
 
-    const path = Paths.recipes;
+    const config = Paths.recipes;
 
     // const config = `${ configs }/Recipes.yaml`;
 
@@ -44,7 +44,7 @@ export async function saveRecipes(recipes){
 
 export async function saveSpices(spices){
 
-    const path = Paths.spices;
+    const config = Paths.spices;
 
     // const config = `${ configs }/Spices.yaml`;
 

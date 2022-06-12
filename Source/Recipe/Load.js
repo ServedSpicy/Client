@@ -1,8 +1,9 @@
 
+import { readAll } from 'Conversion';
 import { parse } from 'YAML';
 import * as Paths from 'Paths';
 
-const { realPath , readTextFile } = Deno;
+const { readTextFile } = Deno;
 const { warn } = console;
 
 
@@ -11,12 +12,21 @@ const { warn } = console;
 export async function loadSpices(){
 
     const path = Paths.spices;
-    // const path = await realPath(Paths.spices);
 
     let raw;
 
     try {
-        raw = await readTextFile(path);
+
+        const file = await Deno.open(path,{
+            create : true ,
+            write : true ,
+            read : true
+        });
+
+        raw = new TextDecoder('utf-8').decode(await readAll(file));
+
+        await Deno.close(file.rid);
+
     } catch (error) {
 
         warn(error);
@@ -63,13 +73,20 @@ export async function loadRecipes(){
 
     const path = Paths.recipes;
 
-    // let path = `${ configs }/Recipes.yaml`;
-    // path = await realPath(path);
-
     let raw;
 
     try {
-        raw = await readTextFile(path);
+
+        const file = await Deno.open(path,{
+            create : true ,
+            write : true ,
+            read : true
+        });
+
+        raw = new TextDecoder('utf-8').decode(await readAll(file));
+
+        await Deno.close(file.rid);
+
     } catch (error) {
 
         warn(error);

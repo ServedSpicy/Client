@@ -1,5 +1,6 @@
 
 
+import { ensureDir } from 'File'
 import { join } from 'Path';
 
 
@@ -16,3 +17,6 @@ export const spices =
 
 export const recipes =
     join(config,'Recipes.yaml');
+
+
+await ensureDir(config);
