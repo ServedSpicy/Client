@@ -1,19 +1,17 @@
 
-import{ parse } from 'YAML';
+import { parse } from 'YAML';
+import * as Paths from 'Paths';
 
-
-const { env , realPath , readTextFile } = Deno;
+const { realPath , readTextFile } = Deno;
 const { warn } = console;
 
-const home = env.get('HOME');
-const configs = `${ home }/.config/ServedSpicy/`;
 
 
 
 export async function loadSpices(){
 
-    let path = `${ configs }/Spices.yaml`;
-    path = await realPath(path);
+    const path = Paths.spices;
+    // const path = await realPath(Paths.spices);
 
     let raw;
 
@@ -63,8 +61,10 @@ export async function loadSpices(){
 
 export async function loadRecipes(){
 
-    let path = `${ configs }/Recipes.yaml`;
-    path = await realPath(path);
+    const path = Paths.recipes;
+
+    // let path = `${ configs }/Recipes.yaml`;
+    // path = await realPath(path);
 
     let raw;
 

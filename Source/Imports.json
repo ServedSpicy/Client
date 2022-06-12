@@ -7,6 +7,7 @@
 
     "System"     : "./Misc/System.js",
     "Color"      : "./Misc/Color.js",
+    "Paths"       : "./Misc/Paths.js",
     "Log"        : "./Misc/Log.js",
     "App"        : "./Misc/App.js",
 

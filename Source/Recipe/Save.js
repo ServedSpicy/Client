@@ -1,10 +1,12 @@
 
 import * as YAML from 'YAML';
 
+import * as Paths from 'Paths'
 
-const home = Deno.env.get('HOME');
 
-const configs = `${ home }/.config/ServedSpicy/`;
+// const home = Deno.env.get('HOME');
+
+// const configs = `${ home }/.config/ServedSpicy/`;
 
 
 function formatRecipe(recipe){
@@ -25,7 +27,9 @@ function formatRecipe(recipe){
 
 export async function saveRecipes(recipes){
 
-    const config = `${ configs }/Recipes.yaml`;
+    const path = Paths.recipes;
+
+    // const config = `${ configs }/Recipes.yaml`;
 
     let data = '';
 
@@ -40,7 +44,9 @@ export async function saveRecipes(recipes){
 
 export async function saveSpices(spices){
 
-    const config = `${ configs }/Spices.yaml`;
+    const path = Paths.spices;
+
+    // const config = `${ configs }/Spices.yaml`;
 
     let data = '';
 
