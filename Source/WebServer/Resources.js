@@ -10,6 +10,7 @@ export const resources = isRelease
     : join('..','Interface','Source') ;
 
 
+export const audio = join(resources,'audio');
 export const css  = join(resources,'css');
 export const img  = join(resources,'img');
 export const js   = join(resources,'js');

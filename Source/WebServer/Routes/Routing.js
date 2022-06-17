@@ -4,6 +4,7 @@ import { Status } from 'Oak';
 
 const
     regex_javascript = /^\/js(\/[a-zA-Z0-9_%.-]+)+\.js$/i,
+    regex_audio = /^\/audio\/[a-zA-Z0-9_%./-]+\.wav/i,
     regex_style = /^\/css\/[a-zA-Z0-9_%./-]+\.css$/i,
     regex_image = /^\/img\/[a-zA-Z0-9_%.-]+\.png$/i;
 
@@ -50,4 +51,8 @@ export function notImage(pathname){
 
 export function notStyle(pathname){
     return ! regex_style.test(pathname);
+}
+
+export function notAudio(pathname){
+    return ! regex_audio.test(pathname);
 }
