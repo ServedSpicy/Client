@@ -1,6 +1,7 @@
 
 import * as YAML from 'YAML';
 
+import { loadSettings , saveSettings } from '../Misc/Settings.js'
 import { saveRecipes , saveSpices } from '../Recipe/Save.js'
 import { loadRecipes , loadSpices } from '../Recipe/Load.js'
 import { websocket as print , orangeA } from 'Log';
@@ -93,7 +94,8 @@ async function handleRequest (message){
 
 const readable = {
     'Recipes' : loadRecipes ,
-    'Spices' : loadSpices
+    'Spices' : loadSpices ,
+    'Settings' : loadSettings
 };
 
 async function read({ resource }){
@@ -118,7 +120,8 @@ async function read({ resource }){
 
 const writable = {
     'Recipes' : saveRecipes ,
-    'Spices' : saveSpices
+    'Spices' : saveSpices ,
+    'Settings' : saveSettings
 };
 
 async function write({ resource , data }){

@@ -18,5 +18,7 @@ export const spices =
 export const recipes =
     join(config,'Recipes.yaml');
 
+export const settings =
+    join(config,'Settings.yaml');
 
 await ensureDir(config);
